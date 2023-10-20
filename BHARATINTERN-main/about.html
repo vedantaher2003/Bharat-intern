@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Blog Content Management Site</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 10px;
+    }
+
+    .header {
+      background-color: orange;
+      color: white;
+      padding: 20px;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .topbar {
+      background-color: #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .topbar h3 {
+      margin-bottom: 5px;
+    }
+
+    .menu,
+    .tools {
+      list-style-type: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .menu-item,
+    .tools-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .menu-item:hover,
+    .tools-item:hover {
+      background-color: #ccc;
+    }
+
+    .main {
+      background-color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .blog-post {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      border-bottom: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .blog-post img {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+    }
+
+    .blog-post-content {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .blog-post-title {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .blog-post-date {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .footer {
+      background-color: orange;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .fa {
+      font-size: 16px;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="grid-container">
+    <!-- Header -->
+    <header class="header">
+      <h1>Blog Content Management Site</h1>
+      <p class="lead">A simple and elegant site for creating and managing your own blog.</p>
+    </header>
+
+    <!-- Top bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><i class="fas fa-home"></i> Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="main">
+      <h2>About Us</h2>
+      <p>This is where you can learn more about us and our mission.</p>
+      <p>We are a team of passionate web developers who love to create and share content online.</p>
+      <p>We created this site to help you create and manage your own blog with ease and elegance.</p>
+      <p>We hope you enjoy using our site and find it useful for your blogging needs.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Created by Om Argade 2023. All rights reserved. </p>
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

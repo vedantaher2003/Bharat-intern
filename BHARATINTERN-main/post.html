@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Content Management Site - View Post</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      text-align: center;
+      padding: 20px;
+      background-color: orange;
+      color: #fff;
+    }
+
+    .main {
+      padding: 50px;
+      background-color: #fff;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: orange;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header text-white text-center py-5">
+    <h1>Blog Content Management Site</h1>
+    <p class="lead">A simple and elegant site for creating and managing your own blog.</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><i class="fas fa-home"></i> Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <div class="container">
+    <div class="main">
+      <h2 id="post-title" style="margin-bottom: 20px; padding:20px;"></h2>
+      <img id="post-image" alt="Post Image" class="img-fluid" style="margin-bottom: 20px;padding:20px;">
+      <div id="post-description" style="margin-bottom: 20px;padding:20px;"></div>
+      <div id="video-container" style="margin-bottom: 20px;padding:20px;"></div>
+      <div id="additional-content" style="margin-bottom: 20px;padding:20px;"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer text-white text-center py-3">
+    <p>Created by Atul Pavaiya &copy; 2023. All rights reserved. </p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+  <script>
+    var postId = new URLSearchParams(window.location.search).get('id');
+    var posts = JSON.parse(localStorage.getItem("posts")) || [];
+    var post = posts[postId];
+
+    if (post) {
+      document.getElementById("post-title").textContent = post.title;
+      if (post.image) {
+        var imgElement = document.getElementById("post-image");
+        imgElement.src = post.image;
+        imgElement.onerror = function() {
+          imgElement.style.display = "none";
+          console.error("Failed to load image: " + post.image);
+        };
+      }
+      var descriptionElement = document.getElementById("post-description");
+      descriptionElement.innerHTML = post.content;
+
+      if (post.video) {
+        var videoContainer = document.getElementById("video-container");
+        var videoIframe = document.createElement("iframe");
+        videoIframe.width = "560";
+        videoIframe.height = "315";
+        videoIframe.src = "https://www.youtube.com/embed/" + extractVideoId(post.video);
+        videoIframe.title = "YouTube video player";
+        videoIframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        videoIframe.allowFullscreen = true;
+
+        videoContainer.appendChild(videoIframe);
+      }
+    } else {
+      document.getElementById("post-title").textContent = "Post Not Found";
+    }
+
+    function extractVideoId(url) {
+      var videoId = "";
+      var match = url.match(/[?&]v=([^&]+)/);
+      if (match) {
+        videoId = match[1];
+      } else {
+        var regex = /youtu\.be\/([^&]+)/;
+        var match = url.match(regex);
+        if (match) {
+          videoId = match[1];
+        }
+      }
+      return videoId;
+    }
+  </script>
+</body>
+</html>

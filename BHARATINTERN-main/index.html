@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Blog Content Management Site</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <header class="jumbotron">
+    <h1><i class="fas fa-pencil-alt"></i> Blog Content Management Site</h1>
+    <p>A simple and elegant site for creating and managing your own blog</p>
+  </header>
+
+  <!-- Top bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><i class="fas fa-home"></i> Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="manage-post.html"><i class="fas fa-plus"></i> Manage Post</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-user-cog"></i> Manage your profile</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <h2 class="text-center mb-4">Welcome to UNIQUE Blog!</h2>
+        <p class="text-center">This is where you can see and edit your blog posts.</p>
+
+        <!-- Container to hold blog posts -->
+        <div id="blog-posts"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="footer">
+    <p>Created by OM ARGADE &copy; 2023. All rights reserved. </p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    function fetchBlogPosts() {
+      var existingPosts = JSON.parse(localStorage.getItem("posts")) || [];
+      var postsContainer = $('#blog-posts');
+      postsContainer.empty();
+
+      for (var i = 0; i < existingPosts.length; i++) {
+        var post = existingPosts[i];
+        var postHtml =
+          '<div class="blog-post">' +
+          '  <img src="' + post.image + '" alt="Post Image">' +
+          '  <div class="blog-post-content">' +
+          '    <h3 class="blog-post-title"><a href="#" onclick="showPost(' + i + ')">' + post.title + '</a></h3>' +
+          '  </div>' +
+          '</div>';
+
+        postsContainer.append(postHtml);
+      }
+    }
+
+    function showPost(index) {
+      var existingPosts = JSON.parse(localStorage.getItem("posts")) || [];
+      var selectedPost = existingPosts[index];
+
+      if (selectedPost) {
+        window.location.href = "post.html?id=" + index;
+      } else {
+        console.error("Selected post does not exist.");
+      }
+    }
+
+    fetchBlogPosts();
+  </script>
+</body>
+
+</html>
